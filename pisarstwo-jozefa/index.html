@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Twórczość literacka Krupy — Józef Krupa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* ---- Książki do pobrania ---- */
+    .books-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 260px), 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .book-card {
+      background: var(--white);
+      border: 1px solid var(--beige-dark);
+      border-radius: calc(var(--radius) * 2);
+      overflow: hidden;
+      box-shadow: 0 4px 20px var(--shadow);
+      display: flex;
+      flex-direction: column;
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .book-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(92,66,9,.18);
+    }
+    .book-card__spine {
+      height: 6px;
+      background: linear-gradient(90deg, var(--sepia-dark), var(--sepia-light));
+    }
+    .book-card__body {
+      padding: 1.5rem 1.75rem 1.75rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    .book-card__title {
+      font-family: var(--font-serif);
+      font-size: 1.15rem;
+      color: var(--sepia-dark);
+      margin: 0;
+      font-weight: 500;
+    }
+    .book-card__author {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin: 0;
+    }
+    .book-card__desc {
+      font-family: var(--font-serif);
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+      font-style: italic;
+      flex: 1;
+    }
+    .book-card__dl {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      margin-top: 0.75rem;
+      padding: 0.45rem 1.1rem;
+      background: var(--sepia-dark);
+      color: var(--white);
+      border-radius: 99px;
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      text-decoration: none;
+      transition: background var(--transition);
+      align-self: flex-start;
+    }
+    .book-card__dl:hover { background: var(--sepia); }
+
+    /* ---- Accordion tekstów ---- */
+    .text-accordion { margin-top: 1.5rem; }
+    .text-accordion details {
+      border-bottom: 1px solid var(--beige-dark);
+    }
+    .text-accordion details:first-child { border-top: 1px solid var(--beige-dark); }
+    .text-accordion summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.85rem 0.25rem;
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--sepia-dark);
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+      transition: color var(--transition);
+    }
+    .text-accordion summary::-webkit-details-marker { display: none; }
+    .text-accordion summary::after {
+      content: "▸";
+      flex-shrink: 0;
+      color: var(--sepia-light);
+      font-size: 0.85rem;
+      transition: transform 0.2s;
+    }
+    .text-accordion details[open] summary::after { transform: rotate(90deg); }
+    .text-accordion summary:hover { color: var(--sepia); }
+
+    /* ---- Treść tekstu ---- */
+    .text-body {
+      padding: 1.5rem 0.25rem 2.5rem;
+      max-width: 72ch;
+    }
+    .text-body p {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--ink);
+      margin: 0 0 0.9em;
+      text-indent: 1.5em;
+    }
+    .text-body p:first-of-type { text-indent: 0; }
+    .text-body h3, .text-body h4, .text-body h5 {
+      font-family: var(--font-serif);
+      color: var(--sepia-dark);
+      margin: 1.75em 0 0.4em;
+      font-weight: 500;
+    }
+    .text-body h3 { font-size: 1.25rem; }
+    .text-body h4 { font-size: 1.1rem; font-style: italic; }
+    .text-body br { display: block; height: 0.5em; content: ""; }
+    .text-error { color: var(--muted); font-style: italic; font-size: 0.9rem; }
+    .text-unavail {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ---- Nawigacja kategorii ---- */
+    .cat-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .cat-pills a {
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      padding: 0.35rem 1rem;
+      border-radius: 99px;
+      border: 1px solid var(--beige-dark);
+      color: var(--sepia-dark);
+      text-decoration: none;
+      transition: background var(--transition), color var(--transition);
+    }
+    .cat-pills a:hover { background: var(--beige); }
+    .cat-pills a.active {
+      background: var(--sepia-dark);
+      color: var(--white);
+      border-color: var(--sepia-dark);
+    }
+
+    /* ---- Siatka kart (index) ---- */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .cat-card {
+      background: var(--white);
+      border: 1px solid var(--beige-dark);
+      border-radius: calc(var(--radius) * 2);
+      overflow: hidden;
+      box-shadow: 0 4px 20px var(--shadow);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .cat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(92,66,9,.18);
+    }
+    .cat-card__spine {
+      height: 6px;
+      background: linear-gradient(90deg, var(--sepia-dark), var(--sepia-light));
+    }
+    .cat-card__body {
+      padding: 1.5rem 1.75rem 1.75rem;
+    }
+    .cat-card__title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      color: var(--sepia-dark);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .cat-card__title:hover { color: var(--sepia); }
+    .cat-card__meta {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+<header class="artist-header">
+  <div class="container">
+    <h1>Józef Krupa — Twórczość literacka</h1>
+    <p class="artist-roles">opowiadania · bajki · wspomnienia · historyjki</p>
+  </div>
+</header>
+
+<nav class="site-nav" aria-label="Nawigacja główna">
+  <div class="container">
+    <ul class="nav-links">
+      <li><a href="../index.html">Strona główna</a></li>
+      <li><a href="../irena/index.html">Irena</a></li>
+      <li><a href="../jozef/index.html">Józef</a></li>
+      <li><a href="../pisarstwo-jozefa/index.html" aria-current="page">Twórczość literacka</a></li>
+      <li><a href="../archiwum/index.html">Zdjęcia archiwalne</a></li>
+      <li><a href="../index.html#ksiega-gosci">Księga gości</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<section style="background:var(--white);padding-block:clamp(2rem,5vw,4rem)">
+  <div class="container">
+    <div class="section-header">
+      <h2>Książki do pobrania</h2>
+      <span class="section-divider"></span>
+    </div>
+    <p style="font-family:var(--font-serif);font-style:italic;color:var(--ink-soft);margin-bottom:0.5rem">
+      Trzy książki Józefa Krupy dostępne bezpłatnie w formacie PDF.
+    </p>
+    <div class="books-grid">
+
+      <div class="book-card">
+        <div class="book-card__spine"></div>
+        <div class="book-card__body">
+          <h3 class="book-card__title">Inne powroty</h3>
+          <p class="book-card__author">Józef Krupa</p>
+          <p class="book-card__desc">Opowiadania i wspomnienia z różnych lat.</p>
+          <a class="book-card__dl" href="Inne powroty.pdf" download>
+            <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-14 9v2h14v-2H5z"/></svg>
+            Pobierz PDF
+          </a>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-card__spine"></div>
+        <div class="book-card__body">
+          <h3 class="book-card__title">Coś zostało, coś minęło…</h3>
+          <p class="book-card__author">Józef Krupa</p>
+          <p class="book-card__desc">Zbiór opowiadań i refleksji.</p>
+          <a class="book-card__dl" href="cos-zostalo-cos-minelo.pdf" download>
+            <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-14 9v2h14v-2H5z"/></svg>
+            Pobierz PDF
+          </a>
+        </div>
+      </div>
+
+      <div class="book-card">
+        <div class="book-card__spine"></div>
+        <div class="book-card__body">
+          <h3 class="book-card__title">Wspomnienia</h3>
+          <p class="book-card__author">Irena Porębska-Krupa</p>
+          <p class="book-card__desc">Wspomnienia i refleksje Ireny Porębskiej-Krupy.</p>
+          <a class="book-card__dl" href="wspomnienia-ireny.pdf" download>
+            <svg viewBox="0 0 24 24" fill="currentColor" width="14" height="14"><path d="M19 9h-4V3H9v6H5l7 7 7-7zm-14 9v2h14v-2H5z"/></svg>
+            Pobierz PDF
+          </a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--cream);padding-block:clamp(2rem,5vw,4rem)">
+  <div class="container">
+    <div class="section-header">
+      <h2>Wszystkie kategorie</h2>
+      <span class="section-divider"></span>
+    </div>
+    <p style="font-family:var(--font-serif);font-style:italic;color:var(--ink-soft);margin-bottom:0.5rem">
+      Józef Krupa pisał przez całe życie — opowiadania, wspomnienia, bajki i krótkie historyjki.
+    </p>
+    <div class="cat-grid">
+      <div class="cat-card"><div class="cat-card__spine"></div><div class="cat-card__body"><a class="cat-card__title" href="bajki.html">Bajki</a><span class="cat-card__meta">14 tekstów</span></div></div><div class="cat-card"><div class="cat-card__spine"></div><div class="cat-card__body"><a class="cat-card__title" href="krotkie-historyjki.html">Krótkie historyjki</a><span class="cat-card__meta">88 tekstów</span></div></div><div class="cat-card"><div class="cat-card__spine"></div><div class="cat-card__body"><a class="cat-card__title" href="opowiadania-i-wspominki.html">Opowiadania i wspominki</a><span class="cat-card__meta">118 tekstów</span></div></div><div class="cat-card"><div class="cat-card__spine"></div><div class="cat-card__body"><a class="cat-card__title" href="opowiadania-20222023.html">Opowiadania 2022–2023</a><span class="cat-card__meta">13 tekstów</span></div></div><div class="cat-card"><div class="cat-card__spine"></div><div class="cat-card__body"><a class="cat-card__title" href="zestaw-opowiadan.html">Zestaw opowiadań</a><span class="cat-card__meta">36 tekstów</span></div></div><div class="cat-card"><div class="cat-card__spine"></div><div class="cat-card__body"><a class="cat-card__title" href="cos-zostao-cos-mineo.html">Coś zostało, coś minęło</a><span class="cat-card__meta">42 tekstów</span></div></div><div class="cat-card"><div class="cat-card__spine"></div><div class="cat-card__body"><a class="cat-card__title" href="pozostae-teksty.html">Pozostałe teksty</a><span class="cat-card__meta">6 tekstów</span></div></div>
+    </div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Irena Porębska-Krupa &amp; Józef Krupa</p>
+    <span class="footer-ornament"></span>
+    <p>Strona poświęcona ich twórczości</p>
+  </div>
+</footer>
+</body>
+</html>

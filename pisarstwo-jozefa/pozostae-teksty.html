@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pozostałe teksty — Józef Krupa</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../style.css">
+  <style>
+    /* ---- Accordion tekstów ---- */
+    .text-accordion { margin-top: 1.5rem; }
+    .text-accordion details {
+      border-bottom: 1px solid var(--beige-dark);
+    }
+    .text-accordion details:first-child { border-top: 1px solid var(--beige-dark); }
+    .text-accordion summary {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 1rem;
+      padding: 0.85rem 0.25rem;
+      font-family: var(--font-serif);
+      font-size: 1.1rem;
+      color: var(--sepia-dark);
+      cursor: pointer;
+      list-style: none;
+      user-select: none;
+      transition: color var(--transition);
+    }
+    .text-accordion summary::-webkit-details-marker { display: none; }
+    .text-accordion summary::after {
+      content: "▸";
+      flex-shrink: 0;
+      color: var(--sepia-light);
+      font-size: 0.85rem;
+      transition: transform 0.2s;
+    }
+    .text-accordion details[open] summary::after { transform: rotate(90deg); }
+    .text-accordion summary:hover { color: var(--sepia); }
+
+    /* ---- Treść tekstu ---- */
+    .text-body {
+      padding: 1.5rem 0.25rem 2.5rem;
+      max-width: 72ch;
+    }
+    .text-body p {
+      font-family: var(--font-serif);
+      font-size: 1.05rem;
+      line-height: 1.9;
+      color: var(--ink);
+      margin: 0 0 0.9em;
+      text-indent: 1.5em;
+    }
+    .text-body p:first-of-type { text-indent: 0; }
+    .text-body h3, .text-body h4, .text-body h5 {
+      font-family: var(--font-serif);
+      color: var(--sepia-dark);
+      margin: 1.75em 0 0.4em;
+      font-weight: 500;
+    }
+    .text-body h3 { font-size: 1.25rem; }
+    .text-body h4 { font-size: 1.1rem; font-style: italic; }
+    .text-body br { display: block; height: 0.5em; content: ""; }
+    .text-error { color: var(--muted); font-style: italic; font-size: 0.9rem; }
+    .text-unavail {
+      font-family: var(--font-serif);
+      font-style: italic;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    /* ---- Nawigacja kategorii ---- */
+    .cat-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-bottom: 2.5rem;
+    }
+    .cat-pills a {
+      font-family: var(--font-sans);
+      font-size: 0.82rem;
+      padding: 0.35rem 1rem;
+      border-radius: 99px;
+      border: 1px solid var(--beige-dark);
+      color: var(--sepia-dark);
+      text-decoration: none;
+      transition: background var(--transition), color var(--transition);
+    }
+    .cat-pills a:hover { background: var(--beige); }
+    .cat-pills a.active {
+      background: var(--sepia-dark);
+      color: var(--white);
+      border-color: var(--sepia-dark);
+    }
+
+    /* ---- Siatka kart (index) ---- */
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .cat-card {
+      background: var(--white);
+      border: 1px solid var(--beige-dark);
+      border-radius: calc(var(--radius) * 2);
+      overflow: hidden;
+      box-shadow: 0 4px 20px var(--shadow);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .cat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(92,66,9,.18);
+    }
+    .cat-card__spine {
+      height: 6px;
+      background: linear-gradient(90deg, var(--sepia-dark), var(--sepia-light));
+    }
+    .cat-card__body {
+      padding: 1.5rem 1.75rem 1.75rem;
+    }
+    .cat-card__title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      color: var(--sepia-dark);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .cat-card__title:hover { color: var(--sepia); }
+    .cat-card__meta {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
+</head>
+<body>
+
+<header class="artist-header">
+  <div class="container">
+    <h1>Józef Krupa — Pisarstwo</h1>
+    <p class="artist-roles">opowiadania · bajki · wspomnienia · historyjki</p>
+  </div>
+</header>
+
+<nav class="site-nav" aria-label="Nawigacja główna">
+  <div class="container">
+    <ul class="nav-links">
+      <li><a href="../index.html">Strona główna</a></li>
+      <li><a href="../irena/index.html">Irena</a></li>
+      <li><a href="../jozef/index.html">Józef</a></li>
+      <li><a href="../pisarstwo-jozefa/index.html" aria-current="page">Twórczość literacka</a></li>
+      <li><a href="../archiwum/index.html">Zdjęcia archiwalne</a></li>
+      <li><a href="../archiwum/index.html">Zdjęcia archiwalne</a></li>
+      <li><a href="../index.html#ksiega-gosci">Księga gości</a></li>
+    </ul>
+  </div>
+</nav>
+
+
+<section style="background:var(--cream);padding-block:clamp(2rem,5vw,4rem)">
+  <div class="container">
+    <div class="section-header">
+      <h2>Pozostałe teksty</h2>
+      <span class="section-divider"></span>
+    </div>
+    <div class="cat-pills"><a href="index.html">Wszystkie</a>
+    <a href="bajki.html">Bajki</a>
+    <a href="krotkie-historyjki.html">Krótkie historyjki</a>
+    <a href="opowiadania-i-wspominki.html">Opowiadania i wspominki</a>
+    <a href="opowiadania-20222023.html">Opowiadania 2022–2023</a>
+    <a href="zestaw-opowiadan.html">Zestaw opowiadań</a>
+    <a href="cos-zostao-cos-mineo.html">Coś zostało, coś minęło</a>
+    <a href="pozostae-teksty.html" class="active">Pozostałe teksty</a>
+  </div>
+    <div class="text-accordion">
+<details>
+  <summary>88 lat Bolka</summary>
+  <div class="text-body">
+<p><strong>Dla mojego brata Bolka n</strong><strong>a 88</strong><strong>.</strong><strong> </strong><strong>U</strong><strong>rodziny</strong></p>
+<br>
+<p>Po stronie z  dedykacją wyobrażam sobie portret Bolka  i zestaw jego i rodzinnych zdjęć z nim</p>
+<p>Po tym kolejna strona następującego  tekstu dedykacyjnego:</p>
+<p><strong>Zebrane tu widoki bliskich nam miejsc nie wymagają szczegółowych opisów, bo Ty masz to szczęście jeszcze ciągle bywać tam i oglądać to</strong><strong>,</strong><strong> co </strong><strong>zapamiętaliśmy z </strong><strong>naszego wczesnego dzieciństwa. Nasza ulica Wodna, przez jakiś czas </strong><strong>Rudastrasse</strong><strong>, </strong><strong>gdzie mieszkaliśmy</strong><strong>. Stamtąd </strong><strong>mieliśmy tak blisko do rzeki Rudy, </strong><strong>dla nas znacznie większej </strong><strong>gdy sami byliśmy mali</strong><strong>, gdzie nauczyliśmy się pływać.</strong><strong> </strong><strong>Za rzeką mieliśmy </strong><strong>zagajniki i </strong><strong>lasy. Ten pierwszy i drugi</strong><strong>.</strong><strong> </strong><strong>Mieliśmy niedaleko do stawów starej Rudy i kąpieliska Rudy. </strong><strong>S</strong><strong>pędzaliśmy czas </strong><strong>nie tylko </strong><strong>na zabawie, ale uczyliśmy się pomagać mamie, zbierając borówki i brus</strong><strong>znice</strong><strong>, </strong><strong>jeżyny </strong><strong>oraz  grzyby. W bliskim dla Ciebie Wielopolu</strong><strong>,</strong><strong> w lesie powstał później mały zalew, leśne uroczysko, które przy każdej okazji odwiedzałem, wysiadając już na </strong><strong>Paruszowcu</strong><strong> i wydłużając drogę do ulicy Gliwickiej, do </strong><strong>późniejszego </strong><strong>mieszkani</strong><strong>a</strong><strong> rodziców </strong><strong>robiąc </strong><strong>ciekawy widokowo spacer</strong><strong>,</strong><strong> by utrwalać na zdjęciach już mocno zmieniające </strong><strong>się w mijającym szybko czasie</strong><strong> dawne widoki z lat dziecinnych. Mnie </strong><strong>teraz brak </strong><strong>tych spacerów</strong><strong>, nowe zdjęcia </strong><strong>już prawie </strong><strong>nie</strong><strong> powstają</strong><strong>.</strong><strong> </strong><strong>Teraz </strong><strong>oglądam </strong><strong>często</strong><strong> </strong><strong>na ekranie to</strong><strong>,</strong><strong> co utrwaliłem</strong><strong> t</strong><strong>ak</strong><strong>ż</strong><strong>e</strong><strong> </strong><strong> w mieście, spoglądam na rynek, na Rybnik z górującymi nad nim wieżami bazyliki, naszego </strong><strong>Antoniczka</strong><strong>, które skąd byśmy nie zbliżali się do naszego rodzinnego miasta, już z daleka były widoczne, wskazywały wracającemu drogę do domu jak prawdziwa latarnia morska. </strong><strong>N</strong><strong>ie </strong><strong>c</strong><strong>hcę</strong><strong> </strong><strong>Ci </strong><strong>się</strong><strong> </strong><strong>chwalić swoimi zdjęciami, a</strong><strong>le </strong><strong> podzielić tą radością, jaką dają </strong><strong>oglądane</strong><strong> </strong><strong>wspomnienia wtedy, gdy już tych miejsc </strong><strong>nie potrafimy </strong><strong>bezpośrednio odwiedzać.</strong></p>
+<p><strong>                                                          Katowice, 31 sierpnia 2021</strong></p>
+<p><strong>                                                                                               </strong><strong>JózekK</strong><strong>                                                                                 </strong></p>
+
+  </div>
+</details>
+<details>
+  <summary>Józef Krupa  ur</summary>
+  <div class="text-body">
+<p>Józef Krupa  ur. W 1931 w Radlinie-Biertułtowach . Ukończył w 1957 studia na  Wydziale Malarstwa w Akademii Sztuk Pięknych w Krakowie. Związał się z TV Katowice od jej powstania w 1957 początkowo jako operator kamery tv, a potem jako scenograf. Był autorem wielu scenografii do teatrów TV oraz widowisk rozrywkowych. Po zaprzestaniu pracy w telewizji od 13 grudnia 1981 uprawia malarstwo o charakterze metaforycznym, posiadające cechy projekcji scenicznych. W ostatnich latach powrót do abstrakcji  i  w twórczości pojawia się grafika komputerowa, oraz fotografika.</p>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<p>Irena Porębska – Krupa urodzona w 1934 w Sosnowcu. Ukończyła studia  w 1959 w pracowni prof. Hanny Rudzkiej-Cybisowej. Uprawia malarstwo metaforyczne o silnej ekspresji formy i koloru. Brała udział w licznych wystawach krajowych i regionalnych. Prace w galeriach i zbiorach prywatnych w Polsce i zagranicą.</p>
+
+  </div>
+</details>
+<details>
+  <summary>katowice  list do Ireny</summary>
+  <div class="text-body">
+<p>Katowice, 25, czwartek .06. 2020</p>
+<p>Kochana Irenko, pewno tak samo niedobrze jak Ty czujesz się samotnie poza domem, w szpitalu w tym okrutnym czasie koronawirusowym, co już miałaś okazję doświadczyć. Dziś w południe dzwonił do mnie pan doktor Fojt. Pytał o różne sprawy lekowe dotyczące Ciebie, terminy kiedy co i jak było. Wszystko mi wytłumaczył, że już masz przetaczanie krwi. Wini za część Twego stanu i zastrzyki ketonalu. Interesowało go co jeszcze brałaś. Jakie leki bierzesz mógł przeczytać w ostatnim wypisie z 17 stycznia z Pneumonologii. W tym pośpiechu nie miałaś ze sobą spisu leków który bierzesz, przesłałem mu go na jego adres mailowy, który mi dał. Zaraz dzwoniłem o tym ze z nim rozmawiałem do Grzegorza, o tym też, że to dziwny przypadek, że Grzegorz się do niego nie dodzwonił, czy że mu się wydawało, że Tadek nie chce odbierać jego telefonów. Niczego takiego nie było mi Tadek powiedział. Rozmawiał ze mna bardzo sympatycznie. Tomek już kupił dla Ciebie telefon. Rozmawiał z Mirą jak Ci to przekazać, wie od niej, żeby jutro rano, to jest w piątek dostarczyć W SZPITALU, GDZIE PRZYJMUJĄ RZECZY DO PODANIA DLA PACJENTÓW. Spróbuję też załadować |Ci to małe radyjko na słuchawki. Jest załadowane i najlepiej Ci posłuży, że będziesz je mogła cały czas trzymać z wtyczką w gniazdku. Nie będziesz niczego w nim ruszać nastawiać, może cały czas być włączone, będziesz tylko wyjmować słuchaweczki z uszu. Będzie nastawione na Katowice, ta stacja będzie na pewno w szpitalu dobrze odebrana. Spróbuję je zabezpieczyć, żebyś przypadkowo nie dotknęła i czegoś przez przypadek nie wyłączyła. Jeśli uruchomisz telefon wg wskazówek Tomka , to Tomek proponuje, że najlepiej żebyś Ty nie dzwoniła, a ja do Ciebie zadzwonię jutro czyli gdy to przeczytasz o godz. 13.00 potem się umówimy, o której do Ciebie dzwonić. Chłopcy też będą do Ciebie sami dzwonić. W razie czego, to ktoś Ci tam pomoże ten telefon uruchomić. Żebyś się nie gubiła w czasie, podaję Ci w kopercie z listem także zegarek, znalazłem ten Twój starszy, myślę że Ci na szpital wystarczy, bo mam obawy, że go i tak będziesz musiała często zdejmować.  Gdyby się zgubił, to nie wielka szkoda. Za dużo nie możemy Ci zabrać, Jeśli się okaże, że to możliwe te przekazywania, to jak będzie coś pilnego, umówimy się telefonicznie i przywiozę. Razem z nowym listem, bo już nie pamiętam moja kochana, kiedy ostatni raz do Ciebie pisałem list. Teraz wieczorem piszę sobie spokojnie, nie oglądam tv, pójdę wcześniej spać, bo Tomek będzie wcześnie po mnie i mówi, że pojedziemy zaraz rano, bo ma dużo przed wyjazdem do załatwiania. Także mamy zrobić zakupy dla mnie. </p>
+<p>   <strong>Przed chwilą zniknął mi cały do tej pory napisany list</strong><strong>. Byłem zdruzgotany, bo widziałaś ile sobie zadaję trudu i nie wiem, czy dałbym rady to jeszcze raz powtórzyć. Ale na szczęście po chwili odnalazłem i piszę dalej</strong></p>
+<p>Byłem już zrozpaczony, bo jak widzisz staram się byś miała jakąś lekturę ode mnie. Poza tym masz tam do poczytania moje historyjki, bo spakowałem Ci moją książkę. Wczoraj dzwoniła pani Asia, bo wysłałem jej maila by dziś nie przychodziła. Była bardzo zmartwiona i najserdeczniej Cię pozdrawia, bo chyba Cię bardzo lubi. Jest z Tobą i trzyma kciuki. Powiadomi też panią Martę co do wtorku. Ja dziś zrobiłem trzy prania, bo to i każdy koc który był pod starym materacem w Twoim łóżku. Resztę prania, wszystko pozmywane. Obiad bo bez Ciebie musiałem zjeść na dwie raty, obiadowa i kolacyjna. Jak widzisz, brak mi Ciebie nawet do zjadania obiadu. Bardzo się wczoraj , ale dziś też martwiłem, jak sobie radzisz beze mnie? Kto Ci poda jeść i wszystko inne załatwi. Wiem, że teraz stałaś się wampirzycą, bo Cię karmią krwią. Aż się boję, czy nie zaczniesz gryźć do krwi po powrocie, bo bardzo czekam na Ciebie i obiecuję pełną poprawę. Wiem, jak źle bez Ciebie, stwierdzam to już w drugim dniu Twej nieobecności. Napisał mi się obszerny list, masz co czytać, całuję Cię mocno, moja ukochana żono, zdrowiej mnie i nam szybciutko, </p>
+<p>                                                                                       Twój mąż JózekK</p>
+  </div>
+</details>
+<details>
+  <summary>Starość to cofanie się</summary>
+  <div class="text-body">
+<p><strong>Starość to cofanie się</strong></p>
+<br>
+<h3>Gdy cofnę się do momentu, od kiedy zacząłem istnieć, wszystko będzie skończone. W tych późnych latach coraz mniej spoglądania w przyszłość, bo tam niepewność, lęki o to, czy starczy sił, bo  wszystko co jeszcze nadejdzie jest nieznane. To co mamy za sobą, poznaliśmy już. Wiele z  tych smutnych chwil z przeszłości nie przeraża już teraz, bo obłaskawiliśmy je przez  czas, który upłynął. Chętnie wspominamy nawet klęski, które wtedy tak przytłaczały i teraz nie budzą żadnych lęków. Daremne dążenia do zdobycia wzajemności w uczuciach już nie porażają. Oglądam wszystko z oddalenia jak film o czasie, w którym miałem do odegrania rolę mniej sympatyczną, napisaną  przez życie. Nie zawsze samo życie pisało nam role, sami w latach chmurnych i górnych wyznaczaliśmy je sobie,   by unosić się nad poziomy. Bywały potem bolesne upadki z wysoka, ale czas szybko wtedy zaleczył rany, by można się było z nowym uczuciem, czy wyzwaniem mierzyć.</h3>
+
+  </div>
+</details>
+<details>
+  <summary>Trudne pytania</summary>
+  <div class="text-body">
+<p>TRUDNE PYTANIA</p>
+<br>
+<p>To trudne, spróbować pomyśleć i coś napisać. Myśleć o tym, że się myśli, jest łatwiej niż coś naprawdę sensownego wymyśleć i potem napisać, czy tylko powiedzieć. Utrudniam  sobie życie, którego z każdym dniem ubywa. Chcieć wiedzieć, bo myślę, że można się dużo, choć nie wszystkiego dowiedzieć. A gdyby to odwrócić: nie chcesz wiedzieć, że można niczego nie wiedzieć. Kiedy będziesz mądrzejszy? Stawiasz sobie pytania, bo chcesz dostać odpowiedzi. Pewno mam w sobie to typowo szkolne podejście. Jak cię pytają to odpowiadaj. Z wiekiem bywa inaczej. Można próbować stawiać sobie pytania bez oczekiwania odpowiedzi.  Przychodzi wiedza o tym, że są takie pytania, na które nie ma odpowiedzi. To trudna wiedza o tym, jakie pytania stawiać. Ale kogo o to zapytać, bo znów może nie być odpowiedzi. Może nie pytać. Tylko dziwić się i dziwić wszystkiemu. Jak wielka jest ta cząstka świata, którą jesteśmy w stanie poznać? Może łatwiej wierzyć niż myśleć? Wierzyć, że się wie, ale czy wiedzieć, że się wierzy? Nie znam odpowiedzi na te pytania. Czasem są to wątpliwości w stawianiu samych pytań, a nie czekanie na odpowiedzi, których nie ma i nie będzie. To najtrudniejsze do zaakceptowania, dowiedzieć się, że czegoś na co się czeka , nigdy nie będzie. Czy dotyczy to tylko mnie, czy innych też? To trudne pytanie: czego na koniec z pewnością nie będzie. Ale kogo o to zapytać?</p>
+<br>
+<p>18.08.2013.</p>
+
+  </div>
+</details>
+<details>
+  <summary>Życiorys</summary>
+  <div class="text-body">
+<p>KRÓTKA NOTKA BIOGRAFICZNA</p>
+<p><strong>Józef Krupa</strong></p>
+<br>
+<p><strong>                    </strong>Urodzony w 1931 roku w Radlinie – Biertułtowach. Wiek szkolny do matury w 1951 w Rybniku. Studia na wydziale malarstwa i dyplom w 1957 roku na Akademii Sztuk Pięknych w Krakowie. Od powstania w grudniu 1957 Telewizji Katowice  pracownik etatowy z funkcją początkowo także  operatora kamery, scenografa, a od 1960 głównego scenografa. Od 13. grudnia 1981 roku zwolniony, niezweryfikowany  do pracy w jednostce zmilitaryzowanej.  W przeciągu działalności scenograficznej autorstwo niezliczonej ilości projektów scenograficznych do teatrów tv, jak i programów rozrywkowych i innych. W czasie lat pracy w TV sporadyczne udziały w wystawach malarskich tutejszego okręgu ZPAP. Od odejścia z TV głównym zajęciem twórczym malarstwo, także źródłem utrzymania rodziny. Udział w wystawach i targach plastycznych. Uprawiane malarstwo ma charakter metaforyczny, są to <strong>P</strong>ejzaże <strong>S</strong>ceniczne będące jakby kontynuacją projektów scenograficznych.  Po zaprzestaniu tego długoletniego cyklu powrót do malarstwa abstrakcyjnego, potem grafika komputerowa i uprawianie w miarę mobilności fotografiki.  W okresie ostatnich kilkunastu lat pisanie krótkich powiastek, bajek, opowiadań sięgających często wydarzeń autobiograficznych, głównie dla przypominania sobie, a mniej innym.</p>
+
+  </div>
+</details>
+</div>
+  </div>
+</section>
+
+<footer class="site-footer">
+  <div class="container">
+    <p>Irena Porębska-Krupa &amp; Józef Krupa</p>
+    <span class="footer-ornament"></span>
+    <p>Strona poświęcona ich twórczości</p>
+  </div>
+</footer>
+</body>
+</html>
