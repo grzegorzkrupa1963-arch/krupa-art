@@ -164,7 +164,7 @@
   </section>
 
   <!-- =============================================
-       KSIĘGA GOŚCI — GISCUS (placeholder)
+       KSIĘGA GOŚCI
        ============================================= -->
   <section class="guestbook-section" id="ksiega-gosci">
     <div class="container">
@@ -173,24 +173,93 @@
         <span class="section-divider"></span>
       </div>
 
-      <script src="https://giscus.app/client.js"
-        data-repo="grzegorzkrupa1963-arch/krupa-art-goscie"
-        data-repo-id="R_kgDOSQzgJA"
-        data-category="General"
-        data-category-id="DIC_kwDOSQzgJM4C8DMr"
-        data-mapping="pathname"
-        data-strict="0"
-        data-reactions-enabled="1"
-        data-emit-metadata="0"
-        data-input-position="bottom"
-        data-theme="preferred_color_scheme"
-        data-lang="pl"
-        crossorigin="anonymous"
-        async>
-      </script>
+      <!-- Formularz wpisu -->
+      <form class="gb-form" id="gb-form">
+        <div class="gb-form__row">
+          <label for="gb-name">Imię i nazwisko</label>
+          <input type="text" id="gb-name" name="name" required maxlength="100" placeholder="Twoje imię…">
+        </div>
+        <div class="gb-form__row">
+          <label for="gb-message">Wpis</label>
+          <textarea id="gb-message" name="message" required maxlength="2000" rows="4" placeholder="Napisz kilka słów…"></textarea>
+        </div>
+        <button type="submit" class="gb-form__btn">Zostaw wpis</button>
+        <p class="gb-form__status" id="gb-status"></p>
+      </form>
 
+      <!-- Lista wpisów -->
+      <div class="gb-entries" id="gb-entries">
+        <p class="gb-loading">Ładowanie wpisów…</p>
+      </div>
     </div>
   </section>
+
+  <script>
+    (function() {
+      const API = 'komentarze.php';
+
+      function renderEntries(entries) {
+        const el = document.getElementById('gb-entries');
+        if (!entries.length) {
+          el.innerHTML = '<p class="gb-empty">Brak wpisów — bądź pierwszy!</p>';
+          return;
+        }
+        el.innerHTML = entries.map(e => `
+          <div class="gb-entry">
+            <div class="gb-entry__header">
+              <strong class="gb-entry__name">${e.name}</strong>
+              <span class="gb-entry__date">${e.date}</span>
+            </div>
+            <p class="gb-entry__msg">${e.message}</p>
+          </div>`).join('');
+      }
+
+      function loadEntries() {
+        fetch(API)
+          .then(r => r.json())
+          .then(renderEntries)
+          .catch(() => {
+            document.getElementById('gb-entries').innerHTML =
+              '<p class="gb-empty">Nie można załadować wpisów.</p>';
+          });
+      }
+
+      document.getElementById('gb-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        const status = document.getElementById('gb-status');
+        const btn    = this.querySelector('button');
+        const name    = document.getElementById('gb-name').value.trim();
+        const message = document.getElementById('gb-message').value.trim();
+
+        btn.disabled = true;
+        status.textContent = 'Wysyłanie…';
+
+        fetch(API, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ name, message }),
+        })
+        .then(r => r.json())
+        .then(data => {
+          if (data.ok) {
+            status.textContent = 'Dziękujemy za wpis!';
+            document.getElementById('gb-name').value = '';
+            document.getElementById('gb-message').value = '';
+            loadEntries();
+          } else {
+            status.textContent = 'Błąd — spróbuj ponownie.';
+          }
+          btn.disabled = false;
+        })
+        .catch(() => {
+          status.textContent = 'Błąd połączenia.';
+          btn.disabled = false;
+        });
+      });
+
+      loadEntries();
+    })();
+  </script>
 
   <!-- =============================================
        STOPKA

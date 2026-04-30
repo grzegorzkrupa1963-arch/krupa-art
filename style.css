@@ -507,42 +507,58 @@ section {
   margin-bottom: 0.5rem;
 }
 
-.guestbook-placeholder {
-  border: 2px dashed var(--beige-dark);
-  border-radius: calc(var(--radius) * 2);
-  padding: 2.5rem;
-  margin-top: 2rem;
+/* Formularz księgi gości */
+.gb-form {
   background: var(--white);
-  color: var(--muted);
-  font-size: 0.9rem;
-  line-height: 1.8;
+  border: 1px solid var(--beige-dark);
+  border-radius: calc(var(--radius) * 2);
+  padding: 2rem 2.5rem;
+  margin-top: 2rem;
+  max-width: 640px;
 }
-
-.guestbook-placeholder h3 {
-  font-family: var(--font-sans);
-  font-size: 0.85rem;
-  font-weight: 600;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  color: var(--sepia);
-  margin-bottom: 1rem;
-}
-
-.guestbook-placeholder code {
-  background: var(--beige);
-  padding: 0.15em 0.5em;
-  border-radius: 3px;
-  font-size: 0.85em;
+.gb-form__row { display: flex; flex-direction: column; gap: 0.4rem; margin-bottom: 1.25rem; }
+.gb-form__row label { font-family: var(--font-sans); font-size: 0.82rem; color: var(--muted); }
+.gb-form__row input,
+.gb-form__row textarea {
+  font-family: var(--font-serif);
+  font-size: 1rem;
   color: var(--ink);
+  background: var(--cream);
+  border: 1px solid var(--beige-dark);
+  border-radius: var(--radius);
+  padding: 0.55rem 0.85rem;
+  transition: border-color var(--transition);
+  resize: vertical;
 }
+.gb-form__row input:focus,
+.gb-form__row textarea:focus { outline: none; border-color: var(--sepia-light); }
+.gb-form__btn {
+  font-family: var(--font-sans);
+  font-size: 0.88rem;
+  padding: 0.55rem 1.5rem;
+  background: var(--sepia-dark);
+  color: var(--white);
+  border: none;
+  border-radius: 99px;
+  cursor: pointer;
+  transition: background var(--transition);
+}
+.gb-form__btn:hover { background: var(--sepia); }
+.gb-form__btn:disabled { opacity: 0.6; cursor: default; }
+.gb-form__status { font-family: var(--font-serif); font-style: italic; font-size: 0.9rem; color: var(--sepia); margin-top: 0.75rem; }
 
-.guestbook-placeholder ol {
-  margin: 1rem 0 1rem 1.5rem;
+/* Wpisy */
+.gb-entries { margin-top: 2.5rem; }
+.gb-loading, .gb-empty { font-family: var(--font-serif); font-style: italic; color: var(--muted); }
+.gb-entry {
+  border-bottom: 1px solid var(--beige-dark);
+  padding: 1.25rem 0;
 }
-
-.guestbook-placeholder li + li {
-  margin-top: 0.35rem;
-}
+.gb-entry:first-child { border-top: 1px solid var(--beige-dark); }
+.gb-entry__header { display: flex; align-items: baseline; gap: 1rem; margin-bottom: 0.5rem; flex-wrap: wrap; }
+.gb-entry__name { font-family: var(--font-serif); font-size: 1.05rem; color: var(--sepia-dark); }
+.gb-entry__date { font-family: var(--font-sans); font-size: 0.78rem; color: var(--muted); }
+.gb-entry__msg { font-family: var(--font-serif); font-size: 1rem; line-height: 1.75; color: var(--ink); margin: 0; }
 
 /* ============================================================
    STOPKA
