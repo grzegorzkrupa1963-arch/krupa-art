@@ -13,10 +13,10 @@ jobs:
       - name: Wgraj na serwer FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
-          server: vh16153.vh.net.pl
+          server: ftp.vh16153.vh.net.pl
           username: vh16153
           password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftps
+          protocol: ftp
           port: 21
           local-dir: ./
           server-dir: public_html/
