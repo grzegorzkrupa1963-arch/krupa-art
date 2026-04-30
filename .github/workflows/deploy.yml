@@ -10,17 +10,17 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
+      - name: Zainstaluj lftp
+        run: sudo apt-get install -y lftp
+
       - name: Wgraj na serwer FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ftp.vh16153.vh.net.pl
-          username: vh16153
-          password: ${{ secrets.FTP_PASSWORD }}
-          protocol: ftp
-          port: 21
-          local-dir: ./
-          server-dir: public_html/
-          exclude: |
-            **/.git*
-            .git*
-            aktualizuj.bat
+        run: |
+          lftp -c "
+            set ftp:ssl-allow no;
+            open -u vh16153,${{ secrets.FTP_PASSWORD }} ftp.vh16153.vh.net.pl;
+            mirror --reverse --delete --verbose \
+              --exclude .git \
+              --exclude .github \
+              --exclude aktualizuj.bat \
+              ./ public_html/
+          "
