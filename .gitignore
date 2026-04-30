@@ -18,3 +18,8 @@ npm-debug.log*
 
 # Logi
 *.log
+
+# Foldery ze zdjęciami — za duże na GitHub, wgrywane ręcznie na serwer
+irena-porebska-krupa/
+jozef-krupa/
+wspolne/
