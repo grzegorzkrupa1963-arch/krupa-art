@@ -23,3 +23,8 @@ npm-debug.log*
 irena-porebska-krupa/
 jozef-krupa/
 wspolne/
+
+# Dane logowania FTP — nie wgrywać na GitHub!
+haslo_ftp.txt
+sync_vh_tmp.wsc
+sync_log.txt
