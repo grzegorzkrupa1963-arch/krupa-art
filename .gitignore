@@ -19,10 +19,21 @@ npm-debug.log*
 # Logi
 *.log
 
-# Foldery ze zdjęciami — za duże na GitHub, wgrywane ręcznie na serwer
-irena-porebska-krupa/
-jozef-krupa/
-wspolne/
+# Pliki graficzne — za duże na GitHub, wgrywane ręcznie na serwer
+*.jpg
+*.JPG
+*.jpeg
+*.JPEG
+*.png
+*.PNG
+*.gif
+*.GIF
+*.bmp
+*.BMP
+*.tif
+*.TIF
+*.tiff
+*.TIFF
 
 # Dane logowania FTP — nie wgrywać na GitHub!
 haslo_ftp.txt
