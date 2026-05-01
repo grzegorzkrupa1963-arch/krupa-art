@@ -1,3 +1,3 @@
 open ftp://vh16153:HASLO@ftp.vh16153.vh.net.pl/
-synchronize remote -delete -criteria=size -exclude=komentarze.json;narzedzia/ "C:\PROJEKTY\PROJEKT-KRUPA\STRONA" /public_html
+synchronize remote -delete -criteria=size -filemask="| komentarze.json; narzedzia/; .git/; sync_log.txt; sync_vh.wsc; haslo_ftp.txt" "C:\PROJEKTY\PROJEKT-KRUPA\STRONA" /public_html
 exit
