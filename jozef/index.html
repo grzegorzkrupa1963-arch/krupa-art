@@ -368,7 +368,7 @@
   }
 
   /* --- Generator sekwencji numerycznej --- */
-  function seq(from, to, skip = [], ext = '.JPG') {
+  function seq(from, to, skip = [], ext = '.jpg') {
     return Array.from({length: to - from + 1}, (_, i) => from + i)
       .filter(n => !skip.includes(n))
       .map(n => n + ext);
