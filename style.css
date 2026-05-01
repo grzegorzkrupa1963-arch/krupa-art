@@ -182,6 +182,54 @@ section {
 }
 
 /* ============================================================
+   MENU SKRÓTÓW (nawigacja po sekcjach)
+   ============================================================ */
+.section-nav {
+  background-color: var(--beige);
+  border-bottom: 1px solid var(--beige-dark);
+  position: sticky;
+  top: 51px;
+  z-index: 90;
+}
+
+.section-nav .container {
+  padding-block: 0.5rem;
+}
+
+.section-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  list-style: none;
+  justify-content: center;
+}
+
+.section-nav__list a {
+  font-family: var(--font-sans);
+  font-size: 0.8rem;
+  color: var(--ink);
+  padding: 0.3rem 0.75rem;
+  border-radius: var(--radius);
+  letter-spacing: 0.02em;
+  transition: background var(--transition), color var(--transition);
+}
+
+.section-nav__list a:hover {
+  background-color: var(--sepia);
+  color: var(--white);
+}
+
+.section-nav__list a.section-nav__highlight {
+  background-color: var(--sepia-dark);
+  color: var(--white);
+  font-weight: 600;
+}
+
+.section-nav__list a.section-nav__highlight:hover {
+  background-color: var(--ink);
+}
+
+/* ============================================================
    SEKCJA WSTĘPU
    ============================================================ */
 .intro-section {

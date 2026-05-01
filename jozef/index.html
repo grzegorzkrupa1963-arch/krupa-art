@@ -52,10 +52,25 @@
   </div>
 </section>
 
+<!-- MENU SKRÓTÓW -->
+<nav class="section-nav" aria-label="Przejdź do sekcji">
+  <div class="container">
+    <ul class="section-nav__list">
+      <li><a href="#malarstwo">Malarstwo</a></li>
+      <li><a href="#rysunki">Rysunki</a></li>
+      <li><a href="#grafiki">Grafiki</a></li>
+      <li><a href="#grafiki-komputerowe">Grafiki komputerowe</a></li>
+      <li><a href="#minimal-art">Minimal ART</a></li>
+      <li><a href="#fotografia" class="section-nav__highlight">Fotografia</a></li>
+      <li><a href="#pisarstwo">Pisarstwo</a></li>
+    </ul>
+  </div>
+</nav>
+
 <!-- =============================================
      MALARSTWO — 3 serie jako zakładki
      ============================================= -->
-<section style="background:var(--cream);padding-block:clamp(2.5rem,6vw,5rem)">
+<section id="malarstwo" style="background:var(--cream);padding-block:clamp(2.5rem,6vw,5rem)">
   <div class="container">
     <div class="section-header">
       <h2>Malarstwo</h2>
@@ -118,7 +133,7 @@
 <!-- =============================================
      RYSUNKI (JS)
      ============================================= -->
-<section style="background:var(--white);padding-block:clamp(2.5rem,6vw,5rem);border-top:1px solid var(--beige-dark)">
+<section id="rysunki" style="background:var(--white);padding-block:clamp(2.5rem,6vw,5rem);border-top:1px solid var(--beige-dark)">
   <div class="container">
     <div class="section-header">
       <h2>Rysunki</h2>
@@ -131,7 +146,7 @@
 <!-- =============================================
      GRAFIKI
      ============================================= -->
-<section style="background:var(--cream);padding-block:clamp(2.5rem,6vw,5rem);border-top:1px solid var(--beige-dark)">
+<section id="grafiki" style="background:var(--cream);padding-block:clamp(2.5rem,6vw,5rem);border-top:1px solid var(--beige-dark)">
   <div class="container">
     <div class="section-header">
       <h2>Grafiki</h2>
@@ -144,7 +159,7 @@
 <!-- =============================================
      GRAFIKI KOMPUTEROWE
      ============================================= -->
-<section style="background:var(--white);padding-block:clamp(2.5rem,6vw,5rem);border-top:1px solid var(--beige-dark)">
+<section id="grafiki-komputerowe" style="background:var(--white);padding-block:clamp(2.5rem,6vw,5rem);border-top:1px solid var(--beige-dark)">
   <div class="container">
     <div class="section-header">
       <h2>Grafiki komputerowe</h2>
@@ -160,7 +175,7 @@
 <!-- =============================================
      MINIMAL ART — 2 serie
      ============================================= -->
-<section style="background:var(--cream);padding-block:clamp(2.5rem,6vw,5rem);border-top:1px solid var(--beige-dark)">
+<section id="minimal-art" style="background:var(--cream);padding-block:clamp(2.5rem,6vw,5rem);border-top:1px solid var(--beige-dark)">
   <div class="container">
     <div class="section-header">
       <h2>Minimal ART</h2>
@@ -184,7 +199,7 @@
 <!-- =============================================
      FOTOGRAFIA — 6 serii
      ============================================= -->
-<section style="background:var(--white);padding-block:clamp(2.5rem,6vw,5rem);border-top:1px solid var(--beige-dark)">
+<section id="fotografia" style="background:var(--white);padding-block:clamp(2.5rem,6vw,5rem);border-top:1px solid var(--beige-dark)">
   <div class="container">
     <div class="section-header">
       <h2>Fotografia</h2>
@@ -192,25 +207,16 @@
     </div>
     <div class="tabs" id="foto-tabs">
       <ul class="tabs__nav" role="tablist">
-        <li><button role="tab" class="active" data-tab="baz" aria-selected="true">Bażantaria</button></li>
-        <li><button role="tab" data-tab="parki" aria-selected="false">Parki</button></li>
+        <li><button role="tab" class="active" data-tab="parki" aria-selected="true">Parki</button></li>
         <li><button role="tab" data-tab="pej1" aria-selected="false">Pejzaże 1</button></li>
         <li><button role="tab" data-tab="pej2" aria-selected="false">Pejzaże 2</button></li>
         <li><button role="tab" data-tab="inna" aria-selected="false">Inne 2022-A</button></li>
         <li><button role="tab" data-tab="innb" aria-selected="false">Inne 2022-B</button></li>
+        <li><button role="tab" data-tab="baz" aria-selected="false">Bażantaria</button></li>
       </ul>
 
-      <!-- Bażantaria (3 pliki — HTML) -->
-      <div class="tabs__panel active" id="tab-baz" role="tabpanel">
-        <div class="pswp-gallery gallery-grid" id="gal-baz">
-          <a href="../jozef-krupa/fotografia/Bazantaria/Bazantaria_zbior_1/p1180773.jpg" data-pswp-width="2361" data-pswp-height="1328"><img src="../jozef-krupa/fotografia/Bazantaria/Bazantaria_zbior_1/thumbs/p1180773.jpg" alt="Bażantaria" loading="lazy"></a>
-          <a href="../jozef-krupa/fotografia/Bazantaria/Bazantaria_zbior_1/p1180779.jpg" data-pswp-width="3069" data-pswp-height="1726"><img src="../jozef-krupa/fotografia/Bazantaria/Bazantaria_zbior_1/thumbs/p1180779.jpg" alt="Bażantaria" loading="lazy"></a>
-          <a href="../jozef-krupa/fotografia/Bazantaria/Bazantaria_zbior_1/p1200414.jpg" data-pswp-width="3584" data-pswp-height="2016"><img src="../jozef-krupa/fotografia/Bazantaria/Bazantaria_zbior_1/thumbs/p1200414.jpg" alt="Bażantaria" loading="lazy"></a>
-        </div>
-      </div>
-
       <!-- Parki (100 — JS) -->
-      <div class="tabs__panel" id="tab-parki" role="tabpanel">
+      <div class="tabs__panel active" id="tab-parki" role="tabpanel">
         <div class="pswp-gallery gallery-grid" id="gal-parki"></div>
       </div>
 
@@ -233,6 +239,16 @@
       <div class="tabs__panel" id="tab-innb" role="tabpanel">
         <div class="pswp-gallery gallery-grid" id="gal-innb"></div>
       </div>
+
+      <!-- Bażantaria (3 pliki — HTML) -->
+      <div class="tabs__panel" id="tab-baz" role="tabpanel">
+        <div class="pswp-gallery gallery-grid" id="gal-baz">
+          <a href="../jozef-krupa/fotografia/Bazantaria/Bazantaria_zbior_1/p1180773.jpg" data-pswp-width="2361" data-pswp-height="1328"><img src="../jozef-krupa/fotografia/Bazantaria/Bazantaria_zbior_1/thumbs/p1180773.jpg" alt="Bażantaria" loading="lazy"></a>
+          <a href="../jozef-krupa/fotografia/Bazantaria/Bazantaria_zbior_1/p1180779.jpg" data-pswp-width="3069" data-pswp-height="1726"><img src="../jozef-krupa/fotografia/Bazantaria/Bazantaria_zbior_1/thumbs/p1180779.jpg" alt="Bażantaria" loading="lazy"></a>
+          <a href="../jozef-krupa/fotografia/Bazantaria/Bazantaria_zbior_1/p1200414.jpg" data-pswp-width="3584" data-pswp-height="2016"><img src="../jozef-krupa/fotografia/Bazantaria/Bazantaria_zbior_1/thumbs/p1200414.jpg" alt="Bażantaria" loading="lazy"></a>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
