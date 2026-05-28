@@ -11,6 +11,45 @@
   <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/photoswipe@5/dist/photoswipe.css">
   <link rel="stylesheet" href="../style.css">
+  <style>
+    .cat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+    .cat-card {
+      background: var(--white);
+      border: 1px solid var(--beige-dark);
+      border-radius: calc(var(--radius) * 2);
+      overflow: hidden;
+      box-shadow: 0 4px 20px var(--shadow);
+      transition: transform var(--transition), box-shadow var(--transition);
+    }
+    .cat-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 32px rgba(92,66,9,.18);
+    }
+    .cat-card__spine {
+      height: 6px;
+      background: linear-gradient(90deg, var(--sepia-dark), var(--sepia-light));
+    }
+    .cat-card__body { padding: 1.5rem 1.75rem 1.75rem; }
+    .cat-card__title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      color: var(--sepia-dark);
+      text-decoration: none;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    .cat-card__title:hover { color: var(--sepia); }
+    .cat-card__meta {
+      font-family: var(--font-sans);
+      font-size: 0.8rem;
+      color: var(--muted);
+    }
+  </style>
 </head>
 <body>
 
@@ -271,32 +310,19 @@
       <h2>Pisarstwo</h2>
       <span class="section-divider"></span>
     </div>
-    <ul class="writing-list">
-      <li>
-        <strong>Wspomnienia</strong>
-        <span>Książka wydana drukiem — rozdziały I–VI i epilog</span>
-        <br>
-        <a href="../pisarstwo-jozefa/irena-wspomnienia-i.html"
-           style="display:inline-block;margin-top:0.6rem;font-size:0.875rem;color:var(--sepia);">
-          → Czytaj online (rozdział I)
-        </a>
-        &nbsp;&nbsp;
-        <a href="../irena-porebska-krupa/pisarstwo/Irena Porebska-Krupa - Wspomnienia.pdf"
-           target="_blank" rel="noopener"
-           style="font-size:0.875rem;color:var(--sepia);">
-          → Pobierz PDF
-        </a>
-      </li>
-      <li>
-        <strong>Uzupełnienia do pamiętnika</strong>
-        <span>Dodatkowe wspomnienia uzupełniające książkę</span>
-        <br>
-        <a href="../pisarstwo-jozefa/irena-pobyt-w-siemoni.html"
-           style="display:inline-block;margin-top:0.6rem;font-size:0.875rem;color:var(--sepia);">
-          → Czytaj online
-        </a>
-      </li>
-    </ul>
+    <p style="font-family:var(--font-serif);font-style:italic;color:var(--ink-soft);margin-bottom:0.5rem">
+      Wspomnienia spisane dla wnucząt i prawnucząt — w sześciu rozdziałach i epilogu.
+    </p>
+    <div class="cat-grid">
+      <div class="cat-card"><div class="cat-card__spine"></div><div class="cat-card__body"><a class="cat-card__title" href="../pisarstwo-jozefa/irena-wspomnienia-i.html">Rozdział I</a><span class="cat-card__meta">Dzieciństwo w Sosnowcu</span></div></div>
+      <div class="cat-card"><div class="cat-card__spine"></div><div class="cat-card__body"><a class="cat-card__title" href="../pisarstwo-jozefa/irena-wspomnienia-ii.html">Rozdział II</a><span class="cat-card__meta">Lata wojenne</span></div></div>
+      <div class="cat-card"><div class="cat-card__spine"></div><div class="cat-card__body"><a class="cat-card__title" href="../pisarstwo-jozefa/irena-wspomnienia-iii.html">Rozdział III</a><span class="cat-card__meta">Po wojnie — nowe miejsca</span></div></div>
+      <div class="cat-card"><div class="cat-card__spine"></div><div class="cat-card__body"><a class="cat-card__title" href="../pisarstwo-jozefa/irena-wspomnienia-iv.html">Rozdział IV</a><span class="cat-card__meta">Lata szkolne</span></div></div>
+      <div class="cat-card"><div class="cat-card__spine"></div><div class="cat-card__body"><a class="cat-card__title" href="../pisarstwo-jozefa/irena-wspomnienia-v.html">Rozdział V</a><span class="cat-card__meta">Studia w ASP Kraków</span></div></div>
+      <div class="cat-card"><div class="cat-card__spine"></div><div class="cat-card__body"><a class="cat-card__title" href="../pisarstwo-jozefa/irena-wspomnienia-vi.html">Rozdział VI</a><span class="cat-card__meta">Życie po studiach</span></div></div>
+      <div class="cat-card"><div class="cat-card__spine"></div><div class="cat-card__body"><a class="cat-card__title" href="../pisarstwo-jozefa/irena-wspomnienia-epilog.html">Epilog</a><span class="cat-card__meta">Złote gody</span></div></div>
+      <div class="cat-card"><div class="cat-card__spine"></div><div class="cat-card__body"><a class="cat-card__title" href="../pisarstwo-jozefa/irena-pobyt-w-siemoni.html">Pobyt w Siemoni</a><span class="cat-card__meta">Uzupełnienia do pamiętnika</span></div></div>
+    </div>
 
     <div class="section-header" style="margin-top:2.5rem">
       <h3 style="font-family:var(--font-serif);font-size:1.3rem;color:var(--sepia-dark);font-weight:400">Zdjęcia z książki</h3>
