@@ -1,9 +1,9 @@
 <?php
 session_start();
 
-$HASLO_HASH = '$2y$10$Q8vK3mNpX9rL2wYzA1cUeOJ5kHtGdMbFnWqVsRiElCuTyPxZo0a3e';
+$HASLO_HASH = '461f7322521d258b8a1e95cdea46aa933cf43f93fb807f2c7cc54c0c6692fe64';
 // Domyślne hasło: KrupaArt2026
-// Aby zmienić hasło, wygeneruj nowy hash: php -r "echo password_hash('NOWE_HASLO', PASSWORD_DEFAULT);"
+// Aby zmienić hasło, wygeneruj nowy hash w Python: python -c "import hashlib; print(hashlib.sha256('NOWE_HASLO'.encode()).hexdigest())"
 
 $json_file = __DIR__ . '/komentarze.json';
 
@@ -16,7 +16,7 @@ if (isset($_GET['logout'])) {
 
 // --- Logowanie ---
 if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['haslo'])) {
-    if (password_verify($_POST['haslo'], $HASLO_HASH)) {
+    if (hash('sha256', $_POST['haslo']) === $HASLO_HASH) {
         $_SESSION['zalogowany'] = true;
         header('Location: admin.php');
         exit;
